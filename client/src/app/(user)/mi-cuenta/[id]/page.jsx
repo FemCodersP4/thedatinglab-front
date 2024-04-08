@@ -3,7 +3,7 @@ import MatchProfileContent from '../../../components/profile/MatchProfileContent
 import UserTitleProfile from '../../../components/profile/UserTitleProfile';
 import TabProfile from '../../../components/profile/TabProfile';
 import ProfileContent from '../../../components/profile/ProfileContent';
-import { getProfileById } from "@/app/services/user";
+import { getProfileById, getUserEvents } from "@/app/services/user";
 import { useEffect, useState } from "react";
 import { useParams } from 'next/navigation';
 import { Loading } from "@/app/components/events/CardList";
@@ -16,10 +16,9 @@ export default function ProfilePage() {
   const handleButtonClick = (element) => {
     setCurrentElement(element);
   };
+
   const { user } = useUser();
-
   const profileId = user.profile_id;
-
   const [userInfo, setUserInfo] = useState(null);
   const [error, setError] = useState(false);
   const params = useParams();
@@ -52,6 +51,8 @@ export default function ProfilePage() {
       <TabProfile handleButtonClick={handleButtonClick} />
       {currentElement === 'Perfil' && <ProfileContent userData={userInfo} />}
       {currentElement === 'Matches' && <MatchProfileContent />}
+      {currentElement === 'Experiencias' && <UserEvents userId={params.id} />}
+
     </main>
   );
 };

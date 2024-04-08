@@ -6,6 +6,7 @@ import Button from "@/app/components/Button.jsx";
 import { useState } from "react";
 import Image from "next/image";
 import { ModalUserLogged } from "../modal/ModalUserLogged";
+import { registerForEvent } from "@/app/services/user";
 
 export default function Card({ eventDate }) {
   const { user } = useUser();
@@ -111,3 +112,5 @@ export default function Card({ eventDate }) {
     </div>
   );
 }
+
+
