@@ -48,19 +48,11 @@ export const getProfileById = async (profileId) => {
     headers: authHeader(),
   });
   return response.data;
+}
+
+export const getMatch = async () => {
+  const response = await axios.get(`${API_URL}/matching-users`, {
+    headers: authHeader(),
+  });
+  return response.data;
 };
-
-
-// export const getUserEvents = async (userId) => {
-//   const response = await axios.get(`${API_URL}/user/${userId}/events`, {
-//     headers: authHeader(),
-//   });
-//   return response.data;
-// };
-
-// export const registerForEvent = async (eventId) => {
-//   return await axios.post(`${API_URL}/events/register`, { event_id: eventId }, { headers: authHeader() });
-// };
-
-
-

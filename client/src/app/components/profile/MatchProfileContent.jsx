@@ -1,22 +1,31 @@
+import { useEffect, useState } from "react";
 import CardMatch from "./CardMatch";
+import { getMatch } from "@/app/services/user";
 
 export default function MatchProfileContent() {
-  const match = {
-    name: 'Nombre del match',
-    imageSrc:  '/assets/image/imagen-hero.png'
 
-  };
+  const [userMatch, setUserMatch] = useState([]);
 
-    return (
-      <section className="py-12 flex flex-wrap w-full justify-evenly gap-4">
-        <CardMatch match={match}/>
-        <CardMatch match={match}/>
-        <CardMatch match={match}/>
-        <CardMatch match={match}/>
-        <CardMatch match={match}/>
-        <CardMatch match={match}/>
-        <CardMatch match={match}/>
-        <CardMatch match={match}/>
-      </section>
-    );
-  }
+  useEffect(() => {
+    const fetchMaches = async () => {
+      try {
+        const userData = await getMatch();
+        setUserMatch(userData.matches);
+        console.log(userData)
+      } catch (error) {
+        setError(true);
+      }
+    };
+
+    fetchMaches();
+  }, []);
+
+  return (
+    <section className="py-12 flex flex-wrap w-full justify-evenly gap-4">
+      {userMatch.length > 0 &&
+        userMatch.map((match, index) => (
+          <CardMatch key={index} match={match} />
+        ))}
+    </section>
+  );
+}

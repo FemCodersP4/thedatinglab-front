@@ -1,3 +1,4 @@
+'use client'
 import InfoUser from "@/app/components/InfoUser";
 import MatchTitleProfile from "@/app/components/MatchTitleProfile";
 
