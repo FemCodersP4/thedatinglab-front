@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { useParams } from 'next/navigation';
 import { Loading } from "@/app/components/events/CardList";
 import { useUser } from "@/app/providers/UserProvider";
-
+import UserEvents from '../../../components/profile/UserEvents';
 
 
 export default function ProfilePage() {
@@ -20,6 +20,7 @@ export default function ProfilePage() {
   const { user } = useUser();
   const profileId = user.profile_id;
   const [userInfo, setUserInfo] = useState(null);
+  const [userEvents, setUserEvents] = useState([]);
   const [error, setError] = useState(false);
   const params = useParams();
   const [isLoading, setIsLoading] = useState(true);
@@ -27,20 +28,32 @@ export default function ProfilePage() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        if (profileId) { // Asegurarse de que profileId tenga un valor
+        if (profileId) { 
           const userData = await getProfileById(profileId);
           setUserInfo(userData);
           setIsLoading(false);
         } else {
-          setError(true); // Manejar el caso en que profileId sea undefined
+          setError(true); 
         }
       } catch (error) {
         setIsLoading(false);
         setError(true);
       }
     };
+
+    const fetchUserEvents = async () => {
+      try {
+        if (profileId) {
+          const events = await getUserEvents(profileId);
+          setUserEvents(events);
+        }
+      } catch (error) {
+        console.error("Error fetching user events:", error);
+      }
+    };
   
     fetchUser();
+    fetchUserEvents();
   }, [profileId]);
   
   if (isLoading) return <Loading />;
@@ -51,7 +64,7 @@ export default function ProfilePage() {
       <TabProfile handleButtonClick={handleButtonClick} />
       {currentElement === 'Perfil' && <ProfileContent userData={userInfo} />}
       {currentElement === 'Matches' && <MatchProfileContent />}
-      {currentElement === 'Experiencias' && <UserEvents userId={params.id} />}
+      {currentElement === 'Experiencias' && <UserEvents events={userEvents} />}
 
     </main>
   );

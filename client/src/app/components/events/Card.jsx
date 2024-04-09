@@ -11,9 +11,17 @@ import { registerForEvent } from "@/app/services/user";
 export default function Card({ eventDate }) {
   const { user } = useUser();
   const [open, setOpen] = useState(false);
+  const [isRegistered, setIsRegistered] = useState(false); // look
 
   const handleOpenModalUserLogged = () => {
     setOpen(true);
+  };
+
+  const handleRegisterForEvent = async () => {
+    const success = await registerForEvent(eventDate.id);
+    if (success) {
+      setIsRegistered(true);
+    }
   };
 
   const handler = () => setOpen(!open);
@@ -106,6 +114,18 @@ export default function Card({ eventDate }) {
               />
               <ModalUserLogged open={open} handler={handler} />
             </>
+          )}
+           {!isRegistered && (
+            <Button
+              color="primary"
+              children="Apuntarme"
+              className="block text-center sm:text-[1rem] text-white text-[1rem] font-semibold lg:mt-[1.4rem] lg:py-[0.3rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1rem]"
+              style={{
+                transition:
+                  "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
+              }}
+              onClick={handleRegisterForEvent}
+            />
           )}
         </div>
       </div>
