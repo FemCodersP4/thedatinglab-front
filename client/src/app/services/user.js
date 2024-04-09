@@ -58,9 +58,9 @@ export const getProfileById = async (profileId) => {
 //   return response.data;
 // };
 
-export const registerForEvent = async (eventId) => {
-  return await axios.post(`${API_URL}/events/register`, { event_id: eventId }, { headers: authHeader() });
-};
+// export const registerForEvent = async (eventId) => {
+//   return await axios.post(`${API_URL}/events/register`, { event_id: eventId }, { headers: authHeader() });
+// };
 
 
 
