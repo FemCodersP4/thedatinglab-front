@@ -57,26 +57,22 @@ export const getMatch = async () => {
   return response.data;
 };
 
-//prueba para el registro
-export const registerForEvent = async (eventId) => {
-  try {
-    await axios.post(
-      `${process.env.API_URL}/event/attendance/${eventId}`,
-      null,
-      { headers: authHeader() }
-    );
-    return true; // Indicar éxito en el registro
-  } catch (error) {
-    console.error("Error registering for event:", error);
-    return false; // Indicar fallo en el registro
-  }
-};
 
-//prueba 2 degetuserEvent
-
-export const getUserEvents = async (userId) => {
-  const response = await axios.get(`${API_URL}/user-events/${userId}`, {
+export const updateProfile = async (profileId, formData) => {
+  return await axios.put(`${API_URL}/profile/${profileId}`, {
+    image: formData.image,
+    description: formData.description,
+    vitalMoment: formData.vitalMoment,
+  }, {
     headers: authHeader(),
   });
-  return response.data;
+};
+
+export const createProfile = async (formData, headers) => {
+  return await axios.post(`${API_URL}/profile`,  formData, {
+    headers: {
+      ...headers,
+      'Content-Type': 'multipart/form-data', 
+    },
+  });
 };

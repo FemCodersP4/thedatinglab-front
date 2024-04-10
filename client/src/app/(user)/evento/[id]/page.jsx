@@ -75,7 +75,7 @@ function page() {
                   <div
                     className=" rounded-md flex justify-center items-center w-full h-[18rem] shadow-lg  md:basis-[50%] md:h-[25rem] ol:basis-[60%] ol:h-[30rem]"
                     style={{
-                      backgroundImage: `url(http://localhost:8000/storage/${event.image})`,
+                      backgroundImage: `url(http://127.0.0.1:8000/storage/${event.image})`,
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                     }}

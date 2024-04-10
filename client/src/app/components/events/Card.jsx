@@ -31,7 +31,7 @@ export default function Card({ eventDate }) {
       <div
         className="w-full min-h-[12rem] small:h-[14rem] sm:!h-[12rem] md:!h-[14rem] lg:!h-[12rem] ol:!h-[15rem] rounded-md shadow-md"
         style={{
-          backgroundImage: `url(http://localhost:8000/storage/${eventDate.image})`,
+          backgroundImage: `url(http://127.0.0.1:8000/storage/${eventDate.image})`,
           backgroundPosition: "center center",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",

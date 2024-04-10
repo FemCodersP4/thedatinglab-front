@@ -22,5 +22,13 @@ export const exportAttendance = async () => {
       return response;
 };
 
+export const exportMatching = async (userId) => {
+  const response = await axios.get(`${API_URL}/admin/export/matching/${userId}`, {
+    headers: authHeader(),
+    responseType: 'blob',
+  });
+  return response;
+};
+
 
 

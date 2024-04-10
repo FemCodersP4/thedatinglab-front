@@ -14,13 +14,13 @@ export default function UserTitleProfile() {
           {user.name}
         </h2>
       </section>
-      <div className="m-auto w-[12.5rem] lg:mb-4 h-[12.5rem] overflow-hidden lg:m-0 lg:w-[14rem] lg:h-[14rem]">
+      <div className="m-auto w-[12.5rem] lg:mb-4 rounded-full h-[12.5rem] overflow-hidden lg:m-0 lg:w-[14rem] lg:h-[14rem]">
         <Image
           src={`http://127.0.0.1:8000/storage/${user.profile_image}`}
           width={200}
           height={200}
           alt={`${user.name} photo`}
-          className="object-fit w-full h-full" />
+          className="object-cover w-full h-full" />
       </div>
     </div>
   );

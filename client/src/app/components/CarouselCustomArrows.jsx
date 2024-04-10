@@ -33,14 +33,14 @@ export default function CarouselCustomArrows() {
   return (
     <Carousel
       navigation={() => <></>}
-      className="rounded-xl w-[70%] mx-auto lg:w-[30%] xl:w-[32%] ol:mb-0 ol:h-auto xxl:mt-[1rem] xxl:w-[28%] ol:!mt-[3rem] xxxl:mt-[4rem]"
+      className="rounded-xl w-[70%] mx-auto lg:w-[40%] lg:mt-[2rem] xl:w-[35%] ol:w-[40%] 2xl:!w-[35%] xxl:mt-[1rem]  xxxl:mt-[4rem]"
       prevArrow={({ handlePrev }) => (
         <IconButton
           variant="text"
           color="white"
           size="lg"
           onClick={handlePrev}
-          className="!absolute top-2/4 left-4 -translate-y-20  !rounded-full bg-[#585c5f] w-[1.5rem] h-[1.5rem] sm:w-[2rem] sm:h-[2rem] md:w-[2.2rem] md:h-[2.2rem] lg:w-[2rem] lg:h-[2rem] lg:top-[35%] xxl:w-[2.5rem] xxl:h-[2.5rem]"
+          className="!absolute top-2/4 left-4 -translate-y-20  !rounded-full bg-[#585c5f] w-[1.5rem] h-[1.5rem] sm:w-[2rem] sm:h-[2rem] md:w-[2.2rem] md:h-[2.2rem] lg:w-[2rem] lg:h-[2rem] lg:top-[35%] ol:w-[3rem] ol:h-[3rem] ol:top-[40%] xxl:w-[2.5rem] xxl:h-[2.5rem]"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -48,7 +48,7 @@ export default function CarouselCustomArrows() {
             viewBox="0 0 24 24"
             strokeWidth={2}
             stroke="currentColor"
-            className="h-4 w-4 lg:w-[1rem] lg:h-[1rem] xxl:w-[1.5rem] xxl:h-[1.5rem]"
+            className="h-4 w-4 lg:w-[1rem] lg:h-[1rem] ol:w-[1.5rem] ol:h-[1.5rem] xxl:w-[1.5rem] xxl:h-[1.5rem]"
           >
             <path
               strokeLinecap="round"
@@ -64,7 +64,7 @@ export default function CarouselCustomArrows() {
           color="white"
           size="lg"
           onClick={handleNext}
-          className="!absolute top-2/4 !right-4 -translate-y-20 !rounded-full bg-[#585c5f] w-[1.5rem] h-[1.5rem] sm:w-[2rem] sm:h-[2rem] md:w-[2.2rem] md:h-[2.2rem] lg:w-[2rem] lg:h-[2rem] lg:top-[35%] xxl:w-[2.5rem] xxl:h-[2.5rem]"
+          className="!absolute top-2/4 !right-4 -translate-y-20 !rounded-full bg-[#585c5f] w-[1.5rem] h-[1.5rem] sm:w-[2rem] sm:h-[2rem] md:w-[2.2rem] md:h-[2.2rem] lg:w-[2rem] lg:h-[2rem] lg:top-[35%] ol:w-[3rem] ol:h-[3rem] ol:top-[40%] xxl:w-[2.5rem] xxl:h-[2.5rem]"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -72,7 +72,7 @@ export default function CarouselCustomArrows() {
             viewBox="0 0 24 24"
             strokeWidth={2}
             stroke="currentColor"
-            className="h-4 w-4 lg:w-[1rem] lg:h-[1rem] xxl:w-[1.5rem] xxl:h-[1.5rem]"
+            className="h-4 w-4 lg:w-[1rem] lg:h-[1rem] ol:w-[1.5rem] ol:h-[1.5rem] xxl:w-[1.5rem] xxl:h-[1.5rem]"
           >
             <path
               strokeLinecap="round"
@@ -91,7 +91,7 @@ export default function CarouselCustomArrows() {
               alt="image 3"
               width={500}
               height={300}
-              className=" w-full object-cover rounded-xl h-[12rem] sm:h-[20rem] lg:h-[12rem] ol:h-[15rem] xl:h-[11rem] xxxl:h-[18rem]"
+              className=" w-full object-cover rounded-xl h-[14rem] sm:h-[20rem] lg:h-[12rem] xl:h-[14rem] ol:h-[15rem]  2xl:!h-[18rem] xxxl:!h-[25rem]"
             />
             <div className=" bg-[#eeebee] absolute bottom-0 px-[1rem] py-[0.2rem] rounded-tr-lg sm:px-[3rem]">
               <p className="text-primary-color text-[0.8rem] font-semibold sm:text-[1rem] xxl:text-[1.2rem]">

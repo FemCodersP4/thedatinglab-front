@@ -5,13 +5,14 @@ import { getMatch } from "@/app/services/user";
 export default function MatchProfileContent() {
 
   const [userMatch, setUserMatch] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchMaches = async () => {
       try {
         const userData = await getMatch();
         setUserMatch(userData.matches);
-        console.log(userData)
+        console.log(userData.matches)
       } catch (error) {
         setError(true);
       }

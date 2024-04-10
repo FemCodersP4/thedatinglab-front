@@ -3,7 +3,7 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
 import { getAllUsers } from "@/app/services/user";
-import { exportPreferences } from "@/app/services/exports";
+import { exportPreferences, exportMatching } from "@/app/services/exports";
 import { Card, Typography, CardFooter,Button } from "@material-tailwind/react";
 import { useParams, useRouter } from "next/navigation";
 import { useUser } from "@/app/providers/UserProvider";
@@ -63,6 +63,24 @@ export default function AdminTableUsers() {
         }
       };
 
+      const handleExportMatchings = async (userId) => {
+        try {
+            const response = await exportMatching(userId);
+            const blob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+    
+            link.href = url;
+            link.setAttribute('download', 'event_Matchings.xlsx');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+    
+        } catch (error) {
+            console.error('Error al exportar los matches:', error);
+        }
+    };
+
   return ( 
     <>
         <div className='mb-4'>
@@ -74,6 +92,7 @@ export default function AdminTableUsers() {
             >
             <img src="/assets/icon/icon-excel.svg" alt="Excel" /> Descargar Tests de Usuarios 
             </Button>
+            
         </div>
         <Card>
             <table className="w-full table-auto text-left">
@@ -94,10 +113,14 @@ export default function AdminTableUsers() {
                         <th className="border-b border-blue-gray-100 bg-blue-gray-50 p-4">
                             <Typography variant="small" color="blue-gray" className="font-normal leading-none opacity-70">ID Test</Typography>
                         </th>
+                        <th className="border-b border-blue-gray-100 bg-blue-gray-50 p-4">
+                            <Typography variant="small" color="blue-gray" className="font-normal leading-none opacity-70">Matches</Typography>
+                        </th>
+                        
                     </tr>
                 </thead>
                 <tbody>
-                    {currentUsers.map((user, index) => (
+                {currentUsers.slice(1).map((user, index) => (
                         <tr key={index}>
                             <td className="p-4 w-[100px]">
                                 <Typography variant="small" color="blue-gray" className="font-normal">{user.id}</Typography>
@@ -113,6 +136,18 @@ export default function AdminTableUsers() {
                             </td>
                             <td className="p-4">
                                 <Typography variant="small" color="blue-gray" className="font-normal">{user.preference_id}</Typography>
+                            </td>
+                            <td className="p-4">
+                                <Typography variant="small" color="blue-gray" className="font-normal">
+                                <Button 
+                                    variant="outlined"
+                                    className='flex justify-center items-center gap-1' 
+                                    size="sm"
+                                    onClick={() => handleExportMatchings(user.id)} > {/* Usando una función anónima */}
+                                    <img src="/assets/icon/icon-excel.svg" alt="Excel" />
+                                    Descargar
+                                </Button>
+                                </Typography>
                             </td>
                         </tr>
                     ))}
