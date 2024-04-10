@@ -49,7 +49,7 @@ export default function ProfileMenu({ userImage }) {
             Mi perfil
           </Typography>
         </MenuItem>
-        <MenuItem className="flex items-center gap-[0.8rem] hover:bg-inherit">
+        {/* <MenuItem className="flex items-center gap-[0.8rem] hover:bg-inherit">
           <Image
             width={18}
             height={18}
@@ -77,7 +77,7 @@ export default function ProfileMenu({ userImage }) {
             Experiencias
           </Typography>
         </MenuItem>
-        <hr className="my-2 border-blue-gray-50" />
+        <hr className="my-2 border-blue-gray-50" /> */}
         <MenuItem
           className="flex items-center gap-[0.8rem] hover:bg-inherit"
           onClick={handleUserLogout}

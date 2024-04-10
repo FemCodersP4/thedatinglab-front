@@ -8,7 +8,7 @@ export default function TabProfile({ handleButtonClick }) {
   return (
     <div className="flex flex-col items-center lg:flex-row lg:justify-between gap-2 lg:border-b-red-orange  lg:pb-8 lg:border-b-2 ">
       <TabButton
-        label="Tu Perfil"
+        label="Mi Perfil"
         onClick={() => {
           handleButtonClick('Perfil');
           setActiveButton('Perfil');
@@ -16,7 +16,7 @@ export default function TabProfile({ handleButtonClick }) {
         isActive={activeButton === 'Perfil'}
       />
       <TabButton
-        label="Tus Matches"
+        label="Mis Matches"
         img={
           <Image
             src="/assets/image/icon-small-heart.svg"
@@ -32,7 +32,7 @@ export default function TabProfile({ handleButtonClick }) {
         isActive={activeButton === 'Matches'}
       />
       <TabButton
-        label="Tus Experiencias"
+        label="Mis Experiencias"
         onClick={() => {
           handleButtonClick('Eventos');
           setActiveButton('Eventos');

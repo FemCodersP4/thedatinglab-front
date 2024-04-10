@@ -59,12 +59,16 @@ export const getMatch = async () => {
 
 
 export const updateProfile = async (profileId, formData) => {
-  return await axios.put(`${API_URL}/profile/${profileId}`, {
-    image: formData.image,
-    description: formData.description,
-    vitalMoment: formData.vitalMoment,
-  }, {
-    headers: authHeader(),
+  const data = new FormData();
+  data.append('image', formData.image);
+  data.append('description', formData.description);
+  data.append('vitalMoment', formData.vitalMoment);
+
+  return await axios.post(`${API_URL}/profile/${profileId}`, data, {
+    headers: {
+      ...authHeader(),
+      'Content-Type': 'multipart/form-data', // Asegúrate de establecer el tipo de contenido como multipart/form-data
+    },
   });
 };
 

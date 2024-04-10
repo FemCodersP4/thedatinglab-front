@@ -5,14 +5,14 @@ import TabProfile from '../../../components/profile/TabProfile';
 import ProfileContent from '../../../components/profile/ProfileContent';
 import { getProfileById, getUserEvents } from "@/app/services/user";
 import { useEffect, useState } from "react";
-import { useParams } from 'next/navigation';
+import { useParams } from "next/navigation";
 import { Loading } from "@/app/components/events/CardList";
 import { useUser } from "@/app/providers/UserProvider";
 import UserEvents from '../../../components/profile/UserEvents';
 
 
 export default function ProfilePage() {
-  const [currentElement, setCurrentElement] = useState('Perfil');
+  const [currentElement, setCurrentElement] = useState("Perfil");
   const handleButtonClick = (element) => {
     setCurrentElement(element);
   };
@@ -55,11 +55,11 @@ export default function ProfilePage() {
     fetchUser();
     fetchUserEvents();
   }, [profileId]);
-  
+
   if (isLoading) return <Loading />;
 
   return (
-    <main className="bg-pink-grey-bg px-[10%] py-[4%]">
+    <main className="md:min-h-screen bg-pink-grey-bg px-[10%] py-[4%]">
       <UserTitleProfile />
       <TabProfile handleButtonClick={handleButtonClick} />
       {currentElement === 'Perfil' && <ProfileContent userData={userInfo} userId={user.id}/>}
@@ -68,5 +68,4 @@ export default function ProfilePage() {
 
     </main>
   );
-};
-
+}

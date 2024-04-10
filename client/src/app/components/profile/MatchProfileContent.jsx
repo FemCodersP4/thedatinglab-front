@@ -22,7 +22,7 @@ export default function MatchProfileContent() {
   }, []);
 
   return (
-    <section className="py-12 flex flex-wrap w-full justify-evenly gap-4">
+    <section className="py-12 flex flex-wrap w-full justify-center lg:justify-start gap-4">
       {userMatch.length > 0 &&
         userMatch.map((match, index) => (
           <CardMatch key={index} match={match} />

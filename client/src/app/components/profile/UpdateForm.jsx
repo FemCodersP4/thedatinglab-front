@@ -50,6 +50,8 @@ export default function UpdateForm(){
         setSuccessMessage(null);
       }
     };
+
+    console.log(formData)
   
     return (
         <div>
