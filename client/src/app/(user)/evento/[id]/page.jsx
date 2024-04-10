@@ -7,6 +7,7 @@ import Statement from "@/app/components/Statement.jsx";
 import Button from "@/app/components/Button";
 import { formatearFecha, horaFormato } from "@/app/utils/date.js";
 import { Loading } from "@/app/components/events/CardList";
+import { registerForEvent } from "@/app/services/user";
 
 function page() {
   const params = useParams();
@@ -15,6 +16,7 @@ function page() {
 
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
+  const [isRegistered, setIsRegistered] = useState(false);
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -31,8 +33,17 @@ function page() {
     fetchEvent();
   }, []);
 
+  const handleRegisterForEvent = async () => {
+    const success = await registerForEvent(params.id);
+    if (success) {
+      setIsRegistered(true);
+    }
+  };
+
+
   if (isLoading) return <Loading />;
-  // if (error) return <p>tienes que estar registrado</p>;
+  if (error) return <p>Tienes que estar registrado para acceder a nuestros eventos</p>;
+  
   return (
     <>
       <main className=" bg-pink-grey-bg  border-t-2 border-primary-color ">
@@ -109,16 +120,19 @@ function page() {
                       </p>
                     </div>
                     <div className="w-full">
-                      <Button
-                        color="primary"
-                        children="Apuntarme"
-                        className="block text-center py-[0.5rem] sm:text-[1rem] text-white text-[1rem] font-semibold lg:mt-[1.4rem] mt-0 lg:py-[0.3rem] ol:py-[0.5rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1rem]"
-                        style={{
-                          transition:
-                            "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
-                        }}
-                      />
-                    </div>
+                  {!isRegistered && (
+                    <Button
+                      color="primary"
+                      children="Apuntarme"
+                      className="block text-center py-0.5rem sm:text-1rem text-white text-1rem font-semibold lg:mt-1.4rem mt-0 lg:py-0.3rem ol:py-0.5rem lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-1rem"
+                      style={{
+                        transition:
+                          "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
+                      }}
+                      onClick={handleRegisterForEvent}
+                    />
+                  )}
+                </div>
                   </div>
                 </div>
               </div>

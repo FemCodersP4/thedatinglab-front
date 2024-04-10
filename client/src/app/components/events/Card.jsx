@@ -6,7 +6,7 @@ import Button from "@/app/components/Button.jsx";
 import { useState } from "react";
 import Image from "next/image";
 import { ModalUserLogged } from "../modal/ModalUserLogged";
-import { registerForEvent } from "@/app/services/user";
+
 
 export default function Card({ eventDate }) {
   const { user } = useUser();
@@ -17,12 +17,7 @@ export default function Card({ eventDate }) {
     setOpen(true);
   };
 
-  const handleRegisterForEvent = async () => {
-    const success = await registerForEvent(eventDate.id);
-    if (success) {
-      setIsRegistered(true);
-    }
-  };
+  
 
   const handler = () => setOpen(!open);
 
@@ -31,7 +26,7 @@ export default function Card({ eventDate }) {
       <div
         className="w-full min-h-[12rem] small:h-[14rem] sm:!h-[12rem] md:!h-[14rem] lg:!h-[12rem] ol:!h-[15rem] rounded-md shadow-md"
         style={{
-          backgroundImage: `url(http://127.0.0.1:8000/storage/${eventDate.image})`,
+          backgroundImage: `url(http://localhost:8000/storage/${eventDate.image})`,
           backgroundPosition: "center center",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
