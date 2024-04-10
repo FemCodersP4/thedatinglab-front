@@ -6,7 +6,7 @@ import Button from "@/app/components/Button.jsx";
 import { useState } from "react";
 import Image from "next/image";
 import { ModalUserLogged } from "../modal/ModalUserLogged";
-
+import { registerForEvent } from "@/app/services/user";
 
 export default function Card({ eventDate }) {
   const { user } = useUser();
@@ -17,7 +17,12 @@ export default function Card({ eventDate }) {
     setOpen(true);
   };
 
-  
+  const handleRegisterForEvent = async () => {
+    const success = await registerForEvent(eventDate.id);
+    if (success) {
+      setIsRegistered(true);
+    }
+  };
 
   const handler = () => setOpen(!open);
 

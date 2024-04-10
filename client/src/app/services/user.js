@@ -67,7 +67,7 @@ export const updateProfile = async (profileId, formData) => {
   return await axios.post(`${API_URL}/profile/${profileId}`, data, {
     headers: {
       ...authHeader(),
-      'Content-Type': 'multipart/form-data', // Asegúrate de establecer el tipo de contenido como multipart/form-data
+      'Content-Type': 'multipart/form-data', 
     },
   });
 };
@@ -82,7 +82,6 @@ export const createProfile = async (formData, headers) => {
 };
 
 
-//prueba para el registro
 export const registerForEvent = async (eventId) => {
   try {
     await axios.post(
@@ -90,19 +89,28 @@ export const registerForEvent = async (eventId) => {
       null,
       { headers: authHeader() }
     );
-    
-    return true; // Indicar éxito en el registro
+
+    await saveEventToUserProfile(eventId);
+
+    return true;
   } catch (error) {
     console.error("Error registering for event:", error);
-    return false; // Indicar fallo en el registro
+    return false;
   }
 };
 
-//prueba 2 degetuserEvent
-
-export const getUserEvents = async (userId) => {
-  const response = await axios.get(`${API_URL}/user-events/${userId}`, {
-    headers: authHeader(),
-  });
-  return response.data;
+const saveEventToUserProfile = async (eventId) => {
+  try {
+    const user = JSON.parse(localStorage.getItem("user"));
+    await axios.post(
+      `${process.env.API_URL}/event/user/${user.id}`,
+      { eventId },
+      { headers: authHeader() }
+    );
+  } catch (error) {
+    console.error("Error saving event to user profile:", error);
+    throw error;
+  }
 };
+
+//Route::get('/event/user/{id}', [AttendancesController::class, 'getEventsForUser']); 
