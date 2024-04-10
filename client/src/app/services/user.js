@@ -76,3 +76,29 @@ export const createProfile = async (formData, headers) => {
     },
   });
 };
+
+
+//prueba para el registro
+export const registerForEvent = async (eventId) => {
+  try {
+    await axios.post(
+      `${process.env.API_URL}/event/attendance/${eventId}`,
+      null,
+      { headers: authHeader() }
+    );
+    
+    return true; // Indicar éxito en el registro
+  } catch (error) {
+    console.error("Error registering for event:", error);
+    return false; // Indicar fallo en el registro
+  }
+};
+
+//prueba 2 degetuserEvent
+
+export const getUserEvents = async (userId) => {
+  const response = await axios.get(`${API_URL}/user-events/${userId}`, {
+    headers: authHeader(),
+  });
+  return response.data;
+};
